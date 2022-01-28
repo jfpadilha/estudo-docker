@@ -1,0 +1,19 @@
+### Pastas e outros
+resources/
+.metadata/
+
+
+### Sublimes inuteis
+*.sublime-workspace
+*.sublime-project
+*project
+*classpath
+
+### Compiled class file
+*.class
+
+### Log file
+*.log
+ 
+/bin/
+
