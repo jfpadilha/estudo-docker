@@ -21,3 +21,9 @@ Básico sobre docker
 - anexo arquivo "instalacao_linux.txt" como manual para instalação no linux ubuntu e debian.
 
 ***
+YAML - Yet Another Markup Language
+---
+#### Introdução:
+- Criada em 2001 é uma linguagem não apenas de marcação, mas também uma linguagem de ***Serialização de dados***.
+- ***Serialização de dados*** é uma técnida que permite converter objetos em bytes _(colocando-os em série)_ após a conversão podem ser salvos em disco ou também enviados _(via http, via socket etc)_.
+- Existe o processo de ***Serializar*** _(converter objetos em bytes)_ e existe ***Desserializar*** _(converter bytes em objetos)_.
