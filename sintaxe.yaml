@@ -1,0 +1,8 @@
+# exemplos (par + chave ":" + valor):
+host: geek
+datacenter:           # dentro do datacenter tem 2 pares (chave+valor)
+  location: São Paulo
+  router: 42
+roles:                 # dentro de roles existe uma lista de itens
+  - web
+  - dns
