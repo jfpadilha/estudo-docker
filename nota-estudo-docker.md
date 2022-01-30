@@ -27,3 +27,7 @@ YAML - Yet Another Markup Language
 - Criada em 2001 é uma linguagem não apenas de marcação, mas também uma linguagem de ***Serialização de dados***.
 - ***Serialização de dados*** é uma técnida que permite converter objetos em bytes _(colocando-os em série)_ após a conversão podem ser salvos em disco ou também enviados _(via http, via socket etc)_.
 - Existe o processo de ***Serializar*** _(converter objetos em bytes)_ e existe ***Desserializar*** _(converter bytes em objetos)_.
+
+### Estudo no código
+- Arquivo ["sintaxe.yaml"](sintaxe.yaml) mostra exemplos básicos sobre sintaxe, lembrando que por boa prática, nunca se usa a tecla "tab", sempre usar a barra de espaço.
+- Arquivo ["estilos.yaml"](estilos.yaml) mostra exemplos de estilos de código.

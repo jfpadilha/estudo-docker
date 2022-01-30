@@ -1,0 +1,15 @@
+# Existe 2 estilos para escrever código, chamados "block" e "flow"
+
+# Exemplo de estilo "block" (bloco) com chave + valor 
+host1: joao
+datacenter1:
+  location: Lajeado
+  router: 42
+roles1:
+  - web
+  - dns
+
+# exemplo de estilo "flow" (fluxo)
+host2: "geek"
+datacenter2: { location: São Paulo, router: 42 }   # fica agrupado com chaves { }
+roles2: [web, dns] #para listas usar colchetes [ ]
