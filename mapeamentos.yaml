@@ -1,0 +1,9 @@
+
+# Exemplo de mapeamento comum estilo "block"
+host: geek
+datacenter:
+  location: São Paulo
+  router: 42
+
+  # Exemplo de mapeamento comum estilo "flow"
+datacenter2: { location: São Paulo, ruter 42}
