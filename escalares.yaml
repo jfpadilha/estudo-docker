@@ -1,0 +1,43 @@
+
+# cada um dos itens abaixo são valores escalares
+# cada string é um escalar, cada integer é um escalar
+# chave: valor = chave é um escalar valor é outro escalar
+
+host: geek    
+datacenter:
+  location: Lajeado
+  router: 42    # quando se tem um valor inteiro que não será usado para calcular, então é preferível que seja informado como string
+  switch: 34
+  # ou
+  router2: "42"   # neste formado 42 é uma string | se usar "42/n" vai pular uma linha no final
+  switch2: '34'   # neste exemplo, 34 é uma string
+roles:
+  - webserver
+  - database
+
+
+# valores escalares de multiplas linhas
+# existe 2 tipos: 1 preserva a estrutura das linhas outra que não preserva a estrutura das linhas
+
+
+# valor escalar de multiplas linhas presenvando a formatação
+# na hora de apresentar esses dados vai mostrar exatamente formatado como abaixo
+funcionamento: |    # abrir pipe vai respeitar exatamente o formato abaixo
+  segunda - das 08:00 às 17:00
+  terça   - das 08:00 às 18:00
+  quarta  - das 08:00 às 19:00
+  quinta  - das 08:00 às 20:00
+  sexta   - das 08:00 às 21:00
+  sábado  - das 08:00 às 22:00
+  domingo - das 08:00 às 23:00
+
+# na hora de apresentar os dados, monta todo o conteúdo em apenas 1 linha
+comentarios: >    # com sinal de maior, na hora de apresentar não vai respeitar a formatação
+  Temos alto uso de CPU
+  desde 04/10/2020
+  Estamos investigando.
+
+# adicionando mais informações mas em outra linha
+
+    Felicity Jones
+    felicity@gmail.com

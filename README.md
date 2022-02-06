@@ -54,3 +54,7 @@ YAML - Yet Another Markup Language
 - Sequencia não pode ser vazia ou com linhas em branco
 - Não pode aninhar sem fazer mapeamento
 - Então, sequencia é uma lista de valores, pode-se ver mais em [sequencias.yaml](sequencias.yaml)
+
+#### Escalares
+- Valores escalares são valores únicos, ex: uma string, um boolean, ou seja, diferente de um array.
+- Entende-se melhor em [escalares.yaml](escalares.yaml)
