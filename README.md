@@ -39,6 +39,12 @@ YAML - Yet Another Markup Language
 
 #### Estudo no código
 - Arquivo ["sintaxe.yaml"](sintaxe.yaml) mostra exemplos básicos sobre sintaxe, lembrando que por boa prática, nunca se usa a tecla "tab", sempre usar a barra de espaço.
-- Arquivo ["estilos.yaml"](estilos.yaml) mostra exemplos de estilos de código.
+
 #### Mapeamento
 - É o que o nome sugere, mapear uma chave a um valor, representado por arrays associativos, pares de chaves/valor, tabelas hash. Em yaml são representados por ":" e espaço, sem chaves duplicadas e podem ser aninhados. No arquivo [mapeamentos.yaml](mapeamentos.yaml) podemos ver na prática.
+
+#### Estilos
+- Existem 2 tipos de estilos em yaml:
+		- Bloco, que utiliza chave + valor
+		- Flow, onde ficam agrupados por chaves "{ }"
+- Pode-se visualizar o exemplo em ["estilos.yaml"](estilos.yaml)
