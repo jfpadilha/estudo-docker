@@ -65,3 +65,8 @@ YAML - Yet Another Markup Language
 
 #### Comentários
 - Comentários são importantes para documentar o que ocorreu ou está ocorrendo no código, em yaml são representados por " # " no início da frase
+
+#### Tags
+- Em yaml para configurar uma uri ou url usando um prefixo "%TAG"
+- Configura-se tags locais
+- Quanto algum software fizer a leitura do arquivo ".yaml", ele vai ver que existe uma tag, a qual informa o host então irá obter o valor 'location' conforme exemplo [tags.yaml](tags.yaml)

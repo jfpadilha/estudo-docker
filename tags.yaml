@@ -1,0 +1,16 @@
+# Uso não comum
+%TAG ! tag:host:geek:
+---
+host: geek
+datacenter:
+  location: !GEEK Sâo Paulo   # qual é o host da geek? aqui localiza '!GEEK' então vai obter o valor 'São Paulo'
+  router: "42"
+  switch: '34'
+---
+
+# Uso mais comum
+host: Brasil
+datacenter:
+  location: RS
+  router: !!str 45    # usando tag do yaml, ainda informando que esse dado é uma string
+  switch: !!int 23    # nesse caso diz que o valor é tipo 'int' e ainda existe o tipo !!float
