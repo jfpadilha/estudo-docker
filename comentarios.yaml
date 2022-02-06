@@ -1,0 +1,8 @@
+# Configuracoes do host Gee
+---
+host: geek
+datacenter:
+  location: Lajeado
+  router: 42
+  switch: 34
+---
