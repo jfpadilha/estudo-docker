@@ -1,0 +1,17 @@
+---
+host: jf
+datacenter:
+  location: &SP São Paulo   # este 'location' é a definição da âncora
+---
+host: udemy
+datacenter:
+  location: *SP     # o valor desse 'location' é 'São Paulo' pois ele busca o valor da âncora definida acima
+---
+
+# ainda pode-se usar nesse estilo abaixo
+roles: &ghost   # aqui é a definição da âncora
+  - webserver
+  - database
+...
+---
+roles: *ghost   # aqui é o uso da âncora, assim pode-se reutilizar código

@@ -10,7 +10,7 @@ Estudo em formato prático e objetivo, onde aprendo e demonstro como trabalhar c
 NOTAÇÃO
 ==========
 
-Básico sobre docker
+Básico sobre docker | Visão geral
 ---
 #### O que são containers?
 - também conhecido como "container Linux", é uma maneira de criar ambientes isolados que podem executar código enquanto compartilham um único sistema operacional.
@@ -70,3 +70,9 @@ YAML - Yet Another Markup Language
 - Em yaml para configurar uma uri ou url usando um prefixo "%TAG"
 - Configura-se tags locais
 - Quanto algum software fizer a leitura do arquivo ".yaml", ele vai ver que existe uma tag, a qual informa o host então irá obter o valor 'location' conforme exemplo [tags.yaml](tags.yaml)
+
+#### Âncoras
+- Em yaml usamos âncoras para armazenar e reutilizar dados
+- Define-se uma âncora com o "&"
+- Para referenciar/fazer uso, utiliza-se o "*"
+- Veja exemplos em [ancoras.yaml](ancoras.yaml)
