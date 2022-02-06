@@ -1,0 +1,28 @@
+
+# Sequencia chamada de lista, pode ser considerado array ou colecao:
+roles:          # um parametro com 2 valores
+  - webserver   #sempre 2 espacos no inicio
+  - database
+
+# modo abaixo está totalmente errado
+- payload
+  - bitcoin
+  - 
+  - ethereum
+
+# modo abaixo esta completamente correto
+# estilo "bloco"
+- payload:
+  - bitcoin
+  - ethereum
+
+# modo abaixo esta completamente correto
+# estilo "flow"
+- payload2: [bitcoin, ethereum]
+  
+
+# outro exemplo de lista/sequencia
+- python
+- nginx
+- postgresql
+- redis

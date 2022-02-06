@@ -48,3 +48,9 @@ YAML - Yet Another Markup Language
 		- Bloco, que utiliza chave + valor
 		- Flow, onde ficam agrupados por chaves "{ }"
 - Pode-se visualizar o exemplo em ["estilos.yaml"](estilos.yaml)
+
+#### Sequencias
+- Em yaml as sequencias podem ser listas, arrays coleções ou uma combinação entre elas
+- Sequencia não pode ser vazia ou com linhas em branco
+- Não pode aninhar sem fazer mapeamento
+- Então, sequencia é uma lista de valores, pode-se ver mais em [sequencias.yaml](sequencias.yaml)
