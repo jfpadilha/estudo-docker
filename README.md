@@ -58,3 +58,7 @@ YAML - Yet Another Markup Language
 #### Escalares
 - Valores escalares são valores únicos, ex: uma string, um boolean, ou seja, diferente de um array.
 - Entende-se melhor em [escalares.yaml](escalares.yaml)
+
+#### Estruturas
+- Em yaml, podemos ter multiplas diretivas ou configurações em um único arquivo
+- Para fazer a separação das diretrizes sem interferir uma em outra, utiliza-se três traços "---", explica-se mlehor em [estruturas.yaml](estruturas.yaml)

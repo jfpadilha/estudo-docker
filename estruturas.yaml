@@ -1,0 +1,15 @@
+# até o momento utilizamos da seguinte forma:
+---     # esses 3 traços informa que aqui é uma configuração separada do que tiver em cima
+host: jfpadilha
+datacenter:
+  location: Lajeado
+  router: 42
+  switch: 34
+
+--- # esses 3 traços informa que aqui é uma configuração separada do que tiver em cima
+
+host: geek
+datacenter1:
+  location: SLG
+  router: 23
+  switch: 21
