@@ -83,4 +83,8 @@ Docker e imagens
 #### O que são imagens em um container?
 - Quando fala-se em container, imagens são os "templates" na qual usamos para criar os containers
 - Quando o comando "docker run imageName" é executado, o docket tenta encontrar localmente, caso não consiga, ele tenta encontrar no docker hub.
-- Uma imagem é criada a partir de um arquivo chamado "Dockerfile" _(dockerFile: são instruções linha a linha, na qual informam como criar uma imagem)_
+- Uma imagem é criada a partir de um arquivo chamado "Dockerfile"<sub> _(dockerFile: são instruções linha a linha, na qual informam como criar uma imagem)_</sub>
+
+#### Sistema de aquivos em camada
+- Um dos tópicos mais importantes do **docker** é o *filesystem*, ou seja, o sistema de arquivos utilizado pela ferramenta.
+- O sistema de arquivos do **Docker** é chamado de **Layered**, ou seja, é um sistema de arquivos em camadas.
