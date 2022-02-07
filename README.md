@@ -88,3 +88,12 @@ Docker e imagens
 #### Sistema de aquivos em camada
 - Um dos tópicos mais importantes do **docker** é o *filesystem*, ou seja, o sistema de arquivos utilizado pela ferramenta.
 - O sistema de arquivos do **Docker** é chamado de **Layered**, ou seja, é um sistema de arquivos em camadas.
+
+#### Sistemas de arquivos no docker
+- A camada de escrita que o processo/apliacação visualiza não é o mesmo rootfs base do sistema, mas sim uma camada de abstração do rootfs <sub>_(rootfs: é o local onde fica o sistema de boot do sistema operacional e o kernel)_</sub> 
+- No docker temos esta arquitetura também, mas um pouco diferente:
+		- A camada de escrita que o processo/aplicação visualiza não é o mesmo rootfs base do sistema mas simuma camadadeabstração do rootfs.
+		- Isso faz com que um container torne-se portável, pois as modificações realizadas não são aplicadas ao sistemaorigemdocontainer e sim na camada a qual o sistema visualiza.
+- Imagens são compartilhadas entre containers Docker
+		- Este tipo de sistema de arquivos em camadas busca sempre a eficiência. Desta forma, containers compartilham imagens semelhantes.
+
