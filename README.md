@@ -10,6 +10,7 @@ Estudo em formato prático e objetivo, onde aprendo e demonstro como trabalhar c
 NOTAÇÃO
 ==========
 
+---
 Básico sobre docker | Visão geral
 ---
 #### O que são containers?
@@ -76,3 +77,10 @@ YAML - Yet Another Markup Language
 - Define-se uma âncora com o "&"
 - Para referenciar/fazer uso, utiliza-se o "*"
 - Veja exemplos em [ancoras.yaml](ancoras.yaml)
+---
+Docker e imagens
+---
+#### O que são imagens em um container?
+- Quando fala-se em container, imagens são os "templates" na qual usamos para criar os containers
+- Quando o comando "docker run imageName" é executado, o docket tenta encontrar localmente, caso não consiga, ele tenta encontrar no docker hub.
+- Uma imagem é criada a partir de um arquivo chamado "Dockerfile" _(dockerFile: são instruções linha a linha, na qual informam como criar uma imagem)_
