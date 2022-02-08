@@ -97,3 +97,30 @@ Docker e imagens
 - Imagens são compartilhadas entre containers Docker
 		- Este tipo de sistema de arquivos em camadas busca sempre a eficiência. Desta forma, containers compartilham imagens semelhantes.
 
+#### Comandos docker
+
+``` shell
+	$ docker --version
+		# Mostra a versão instalada
+```
+
+```shell
+	$ docker --help
+		# ajuda
+```
+
+```shell
+	$ docker container ls
+		# lista os containers existentes
+```
+
+```shell
+	$ docker ps
+		# lista os containers que estão em execução
+```
+
+```shell
+	$ docker ps -a
+		# lista os containers que estão em execução e também os containers que estão parados
+```
+
