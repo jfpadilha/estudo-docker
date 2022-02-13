@@ -212,3 +212,10 @@ Docker e imagens
 
 # no navegador abrir "http://localhost:8080" então estaremos na tela do nginx
 ```
+
+#### Os containers não persistem dados
+- Quando cria-se um container, após inserimos algum arquivo nele, ao sair o container será encerrado, ao reabrir o container, o arquivo não existirá.
+- Se a imagem na qual o container foi criado não contém por padrão persistência de dados habilitada, o conteúdo criado será perdido.
+
+##### Solução:
+- Para persistência de dados em containers são os ***volumes*** ou também chamados de ***volumes de dados***
