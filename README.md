@@ -162,8 +162,8 @@ Docker e imagens
 ```
 
 ###### Observação:
-- Não baixar versão em "latest", informar corretamente a versão, _(recomendação)_ primeiramente acesse a imagem pretendida baixar [hub.docker.com](hub.docker.com) e veja qual a última versão _(tag)_ no site mostra o comando correto
-- Exe.:
+- Não baixar versão em "latest", informar corretamente a versão, _(recomendação)_ primeiramente acesse a imagem pretendida baixar <a href="https://hub.docker.com/_/postgres?tab=tags" target="_blank">hub.docker.com/_/postgres</a> e veja qual a última versão _(tag)_ no site mostra o comando correto
+- Exemplificando com postgres:
 ```shell
 # baixando corretamente fixando a versão da imagem
 	$ docker pull postgres:9.6.24-bullseye
@@ -183,3 +183,17 @@ Docker e imagens
 # Criar uma imagem baseada em uma existente
 	$ docker image tag  postgres:13.1 'nomeDaTagQueQueroCriar'
 ```
+
+```shell
+# baixando uma imagem ubuntu:
+	$ docker pull ubuntu:22.04
+
+# executando o container do ubuntu
+	$ docker run ubuntu
+	# vai executar e encerrar, já que não executa nenhum serviço
+
+# executando o container ubuntu e fazer ele imprimir saída na tela
+	$ docker run ubuntu echo "texto a ser impresso na tela"
+	# ao finalizar irá encerrar o container
+```
+
