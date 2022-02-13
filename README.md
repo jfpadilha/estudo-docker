@@ -197,3 +197,18 @@ Docker e imagens
 	# ao finalizar irá encerrar o container
 ```
 
+#### Acessando a porta do container
+- Em exemplo vamos rodar o configurar o Nginx _(servidor web)_
+```shell
+# vamos baixar e executar a imagem, sem ficar utilizando o terminal
+	$ docker run -d -e NGINX_ENTRYPOINT_QUIET_LOGS=1 nginx:1.21.6
+```
+
+- Nesse caso ao colocar _"http://localhost/"_ no navegador não vamos conseguir acessar a porta 80 do nginx, porque ele está rodando no container e não no nosso pc
+- É necessário fazer um espelhamento _(mirror)_ do pc para o container, então:
+```shell
+	$ docker run -d -p 8080:80 nginx:1.21.6-alpine
+# executar usando a porta 8080 (do meu pc) para ( : ) 80 do nginx
+
+# no navegador abrir "http://localhost:8080" então estaremos na tela do nginx
+```
