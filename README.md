@@ -101,26 +101,85 @@ Docker e imagens
 
 ``` shell
 	$ docker --version
-		# Mostra a versão instalada
+# Mostra a versão instalada
 ```
 
 ```shell
 	$ docker --help
-		# ajuda
+# ajuda
+```
+
+```shell
+	$ docker container --help
+# ajuda sobre comando container
 ```
 
 ```shell
 	$ docker container ls
-		# lista os containers existentes
+# lista os containers
 ```
 
 ```shell
 	$ docker ps
-		# lista os containers que estão em execução
+# lista os containers que estão em execução
 ```
 
 ```shell
 	$ docker ps -a
-		# lista os containers que estão em execução e também os containers que estão parados
+# lista os containers que estão em execução e também os containers que estão parados
 ```
 
+```shell
+	$ docker start nomeContainer
+# inicializa um container
+```
+
+```shell
+# exemplo para baixar um container (postgres nesse caso)
+	$ docker pull postgres
+	
+# vai apenas fazer o download da imagem e não irá executar
+
+```
+
+```shell
+# baixar e executar um container (postgres por exemplo)
+	$ docker run postgres
+		
+```
+
+```shell
+# listas as imagens baixadas (instaladas ou não)
+	$ docker image ls
+```
+
+```shell
+# remover uma imagem
+	$ docker image rm image_id
+	
+# se a imagem estiver em uso, o docker não vai permitir a remoção dela, então pode-se remover forçadamente
+		$ docker image rm image_id -f
+```
+
+###### Observação:
+- Não baixar versão em "latest", informar corretamente a versão, _(recomendação)_ primeiramente acesse a imagem pretendida baixar [hub.docker.com](hub.docker.com) e veja qual a última versão _(tag)_ no site mostra o comando correto
+- Exe.:
+```shell
+# baixando corretamente fixando a versão da imagem
+	$ docker pull postgres:9.6.24-bullseye
+
+# desse modo estará fixada a versão na qual estarei usando
+# No momento que for especificada a versão sabe-se exatamente qual versão utilizada, se estiver como "latest" pode ser qualquer versão que for a última.
+```
+
+```shell
+# fazendo inspeção da imagem:
+
+	$ docker image inspect 'image_id'
+# pode-se usar apenas os 3 primeiros dígitos da image_id
+```
+
+```shell
+# Criar uma imagem baseada em uma existente
+	$ docker image tag  postgres:13.1 'nomeDaTagQueQueroCriar'
+```
