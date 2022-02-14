@@ -219,3 +219,16 @@ Docker e imagens
 
 ##### Solução:
 - Para persistência de dados em containers são os ***volumes*** ou também chamados de ***volumes de dados***
+
+#### Persistência de dados -> _Volumes_
+```shell
+# rodar container "linux-alpine"
+	$ docker run --name linux_alpine --rm -i -t alpine:3.15.0 sh
+	
+# cria um container com nome "linux_alpine" versão "3.15.0" e execute o shell "sh"
+
+```
+
+
+
+->```
