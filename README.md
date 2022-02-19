@@ -229,6 +229,6 @@ Docker e imagens
 
 ```
 
-
-
-->```
+#### O que são volumes em um container?
+- Volumes são a solução perfeita para nós desenvolvedores, pois se antes por exemplo tínhamos que instalar um servidor web e um banco da dados diretamente na nossa máquina ou criar uma máquina virtual com estes servidores, agora podemos fazer uso de containers, por exemplo, um para servidor web e um para banco de dados, e termos os arquivos de desenvolvimento para trabalho local.
+- ***Obs:*** Os arquivos/diretórios expostos estão na sua máquina (host) e não no container. Desta forma qualquer modificação neles a persistência é feita no seu computador e não no container.
