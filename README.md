@@ -232,3 +232,44 @@ Docker e imagens
 #### O que são volumes em um container?
 - Volumes são a solução perfeita para nós desenvolvedores, pois se antes por exemplo tínhamos que instalar um servidor web e um banco da dados diretamente na nossa máquina ou criar uma máquina virtual com estes servidores, agora podemos fazer uso de containers, por exemplo, um para servidor web e um para banco de dados, e termos os arquivos de desenvolvimento para trabalho local.
 - ***Obs:*** Os arquivos/diretórios expostos estão na sua máquina (host) e não no container. Desta forma qualquer modificação neles a persistência é feita no seu computador e não no container.
+
+#### Criando volumes no Docker
+- Executando um container em 2 formas:
+```shell
+# executar um container servidor web nginx, e não mostrar os logs de execução:
+	$ docker run --name servidor_web -d -e NGINX_ENTRYPOINT_QUIET=1 nginx:1.21.6
+	
+# agora executando um containser servidor web, mapeando o diretório fazendo uso de um volume em: "/home/user/volumes_docker/servidor_web/"
+	$ docker run -v /home/user/volumes_docker/servidor_web/ --name servidor_web -d -e NGINX_ENTRYPOINT_QUIET=1 nginx:1.21.6
+```
+
+- Executando comandos no container em execução:
+
+```shell
+# docker executar de forma "iterativa" o "servidor_web" no "shell"
+$ docker exec -it servidor_web sh
+
+# acessar então a pasta configurada no volume do container "/home/user/volumes_docker/servidor_web/"
+
+# então agora pode-ser persistir os dados neste diretório.
+
+# após isso, vamos parar o container em execução
+$ docker container stop servidor_web
+
+# checar se realmente está encerrado
+$ docker ps -a
+
+# vamos executá-lo novamente e testar se o arquivo persitido existe:
+$ docker container start servidor_web
+
+# executar shell de forma iterativa novamente:
+$ docker exec -it servidor_web sh
+
+# acessar o diretório "/home/user/volumes_docker/servidor_web/"
+$ cd /home/user/volumes_docker/servidor_web/
+
+# verá que o arquivo está no mesmo local
+
+```
+
+- ***Obs:***  Conforme o procedimento executado acima, o container não pode ser removido, apenas parado e reiniciado
