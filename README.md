@@ -290,9 +290,17 @@ $ docker ps
 $ docker exec -it servidor_web sh
 ```
 - ***Obs.:*** desse modo os dados permanecerão persistidos mesmo se o container for removido
+#### Inspecionando um container
+- Para visuzliar informações do container, volume, diretório de montagem e etc
+```shell
+# após exscutar o comando, basta localizar no log o parágrafo "Mounts" irá mostrar: 'Source': diretório do volume no localhost 'Destination': local no container
+$ docker inspect 'container_id'
+```
 
-
-
+```shell
+# Visualizar consumo de hardware do container
+$ docker stats
+```
 
 ```shell
 ```
