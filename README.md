@@ -234,7 +234,7 @@ Docker e imagens
 - ***Obs:*** Os arquivos/diretórios expostos estão na sua máquina (host) e não no container. Desta forma qualquer modificação neles a persistência é feita no seu computador e não no container.
 
 #### Criando volumes no Docker
-- Executando um container em 2 formas:
+- Primeiramente executando um container em 2 formas:
 ```shell
 # executar um container servidor web nginx, e não mostrar os logs de execução:
 	$ docker run --name servidor_web -d -e NGINX_ENTRYPOINT_QUIET=1 nginx:1.21.6
@@ -273,3 +273,26 @@ $ cd /home/user/volumes_docker/servidor_web/
 ```
 
 - ***Obs:***  Conforme o procedimento executado acima, o container não pode ser removido, apenas parado e reiniciado
+
+#### Montagem do volume, especificando _"diretório do container <-> diretório do host"_
+```shell
+# executar container de --name "servidor_web" -d -p colocando da "porta_8080_localhost:na_Porta_80_do_Container" -e _não_mostrar_logs -v "do_diretórioVolumeDoHost:diretório_Volume_no_container" imagem_nginx:versao-alpine
+$ docker run --name "servidor_web" -d -p 8080:80 -e NGINX_ENTRYPOINT_QUIT_LOGS=1 -v "/home/joao/volumes_docker/servidor_web:/usr/share/nginx/html" nginx:1.21.6-alpine-perl
+#Obs: diretório informado no container é o padrão quando se usa nginx
+
+# verificar se está rodando:
+$ docker ps
+
+# para testar então, vamos acessar no navegador a porta 8080(host) para visualizar a página "index.html" que está em '/usr/share/nginx/html'
+
+# Precisando acessar via shell o volume no container
+# docker executar de forma iterativa o "servidor_web" no sh (shell)
+$ docker exec -it servidor_web sh
+```
+- ***Obs.:*** desse modo os dados permanecerão persistidos mesmo se o container for removido
+
+
+
+
+```shell
+```
