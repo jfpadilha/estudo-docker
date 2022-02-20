@@ -302,5 +302,9 @@ $ docker inspect 'container_id'
 $ docker stats
 ```
 
+#### DockerFile: o que é dockerfile
+- DockerFile >> arquivoDocker
+- É um arquivo texto escrito na linquagem yaml, onde colocamos instruções para gerar uma imagem
+
 ```shell
 ```
