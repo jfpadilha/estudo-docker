@@ -306,5 +306,30 @@ $ docker stats
 - DockerFile >> arquivoDocker
 - É um arquivo texto escrito na linquagem yaml, onde colocamos instruções para gerar uma imagem
 
+#### Dockerfile: criando um dockerfile
+###### Exemplo criando um dockerfile simples para gerar container de um servidor web nginx
+- No diretório do projeto criar um arquido do tipo "Dockerfile", então foi gerado o arquivo chamado <a href="https://github.com/jfpadilha/estudo-docker/blob/master/dir_dockerfiles/servidor_web_nginx.Dockerfile" target="_blank">servidor_web_nginx.Dockerfile </a>
+- Neste arquivo _"Dockerfile"_ foi informado as instruções para geração da imagem:
+```yaml
+FROM nginx:1.21.6-alpine # imagem base e versão
+LABEL maintainer="Estudo docker: jfpadilha@gmail.com" # Identificação e mantenedor do projeto
+COPY . /usr/share/nginx/html # quado montar a imagem copiar tudo para o diretório do dockerFile ( . )
+EXPOSE 80 # a porta 80 do container deve ficar disponível
+```
+- Próximo passo, usando terminal, acessar o diretório onde está o arquivo "Dockerfile"
+- Vamos executar o comando:
+```yaml
+# buid >> gerar imagem a partir de um dockerfile
+# -f >> para informar qual o nome do dockerfile
+# -t >> nome__de_user_no_dockerhub/nome_da_imagem:tag_que_desejar
+# " . " _ponto_ estamos informando para o dockerbuild o local do arquivo na qual está sendo gerado esse build (no caso no mesmo diretório)
+$ docker build -f servidor_web_nginx.Dockerfile -t jfpadilha/servidor_web_nginx:v1 .
+```
+- Após rodar o comando com sucesso, nota-se que foi executado em 4 steps, justamante devivo ao arquivo dockerfile conter 4 linhas de instruções
+- Cada step gera um id
+- Cada id é referente a uma camada no sistema de arquivo de camadas do docker
+
 ```shell
+# executando e testando a imagem gerada
+$ docker run --name "servidor_web_nginx" -d -p 8080:80 jfpadilha/servidor_web_nginx:v1
 ```
