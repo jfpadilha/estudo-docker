@@ -323,7 +323,7 @@ EXPOSE 80 # a porta 80 do container deve ficar disponível
 # -f >> para informar qual o nome do dockerfile
 # -t >> nome__de_user_no_dockerhub/nome_da_imagem:tag_que_desejar
 # " . " _ponto_ estamos informando para o dockerbuild o local do arquivo na qual está sendo gerado esse build (no caso no mesmo diretório)
-$ docker build -f servidor_web_nginx.Dockerfile -t jfpadilha/servidor_web_nginx:v1 .
+$ docker build -f servidor_web_nginx.Dockerfile -t seu_username/servidor_web_nginx:v1 .
 ```
 - Após rodar o comando com sucesso, nota-se que foi executado em 4 steps, justamante devivo ao arquivo dockerfile conter 4 linhas de instruções
 - Cada step gera um id
@@ -331,5 +331,26 @@ $ docker build -f servidor_web_nginx.Dockerfile -t jfpadilha/servidor_web_nginx:
 
 ```shell
 # executando e testando a imagem gerada
-$ docker run --name "servidor_web_nginx" -d -p 8080:80 jfpadilha/servidor_web_nginx:v1
+$ docker run --name "servidor_web_nginx" -d -p 8080:80 seu_username/servidor_web_nginx:v1
+```
+
+#### Dockerfile -> Publicando a imagem no Docker Hub
+- Após gerada e verificado que está tudo correto com a imagem, podemos publicar em nosso espaço no <a href="https://hub.docker.com" target="_blank">hub.docker.com</a>, para isso faz se necessário possuir cadastro, após isso no shell:
+
+```shell
+$ docker login --username=seu_username
+# após informe sua senha
+```
+
+```shell
+# subindo a imagem para o hub
+	$ docker image push seu_username/servidor_web_nginx:v1
+```
+- Após rodar o comando, ele irá preparar as camadas e enviará em sequência.
+
+
+
+
+
+```shell
 ```
