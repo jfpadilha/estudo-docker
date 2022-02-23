@@ -334,7 +334,7 @@ $ docker build -f servidor_web_nginx.Dockerfile -t seu_username/servidor_web_ngi
 $ docker run --name "servidor_web_nginx" -d -p 8080:80 seu_username/servidor_web_nginx:v1
 ```
 
-#### Dockerfile -> Publicando a imagem no Docker Hub
+#### Dockerfile >> Publicando a imagem no Docker Hub
 - Após gerada e verificado que está tudo correto com a imagem, podemos publicar em nosso espaço no <a href="https://hub.docker.com" target="_blank">hub.docker.com</a>, para isso faz se necessário possuir cadastro, após isso no shell:
 
 ```shell
@@ -348,9 +348,50 @@ $ docker login --username=seu_username
 ```
 - Após rodar o comando, ele irá preparar as camadas e enviará em sequência.
 
+#### Dockerfile >> criando dockerfile 2 para exemplo
+- Arquivo [python_django.Dockerfile](https://github.com/jfpadilha/estudo-docker/blob/master/dir_dockerfiles/python_django.Dockerfile), projeto chamado "fusion"
 
+```yaml
+FROM python:3.11.0a5-alpine3.15
+LABEL maintainer="Estudo docker <jfpadilha@gmail.com>"
+COPY . /var/www
+WORKDIR /var/www
+RUN apk update && apk add zlib-dev jpeg-dev gcc musl-dev && pip install -r requirements.txt && python manage.py migrate
+ENTRYPOINT python manage.py runserver 0.0.0.0:8000
+EXPOSE 8080
 
+  
+# -------- Explicação dos comandos acima:
 
+# linha 1 -> linguagem e versão
 
+# linha 2 -> mantenedor
+
+# linha 3 -> copiar tudo ( . ) para /var/wwww
+
+# linha 4 -> diretório de trabalho, na qual a apliucação vai estar funcional
+
+# linha 5 -> executar update && adicionar bibliotecas e requisitos && "pip" é um gerenciador de pacotes do python, instalar eles a partir desse arquivo de requerimentos && executar o arquivo manage.py e "migrate" para criar banco de dados
+
+# linha 6 -> comando que é executado no workdir, assim que o container é criado, após criar o container, qual comando será executado? nesse caso executar o server na porta 8000
+
+# linha 7 -> é espoxta na porta 8000
+```
+
+- Arquivo tipo "Dockerfile" criado, então é hora de executar o build
 ```shell
+	$ docker build -f python_django.Dockerfile -t seu_username/fusion:v1 . # ( . ) no final
+
+# se o nome do arquivo tipo dockerfile for renomeado com apenas "Dockerfile" não é necessário o comando "-f nome"
+```
+
+- Após vamos conferir a imagem gerada e na sequencia rodar ela para efetuar os testes
+```shell
+# vericicando se existe algum container relacionado rodando:
+	$ docker ps
+
+# Caso existir pode-se encerrar ou remover
+
+# após vamos executar o comando "run" para executar o serviço e testar a aplicação
+	$ docker run --name "fusion" -d -p 8080:8000 seu_username/fusion:v1
 ```
