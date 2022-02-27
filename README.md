@@ -395,3 +395,19 @@ EXPOSE 8080
 # após vamos executar o comando "run" para executar o serviço e testar a aplicação
 	$ docker run --name "fusion" -d -p 8080:8000 seu_username/fusion:v1
 ```
+
+#### Como funciona a comunicação em uma rede no Docker
+- Quando trabalhamos com Docker este cria uma rede interna, em outra classe, e distribui IPs aos containers criados.
+- Visualizar as redes no terminal linux:
+ ```shell
+ 	$ ip addr
+ ``` 
+ ![](rede_docker.png)
+ 
+ - Após rodar o comado veremos as informações referente as placas de rede do seu computador, juntamente com  a rede ***"docker0:"*** esta é a bridge do docker, no qual faz a ponte entre as camadas: containers, Bridge, host e a internet, conforme imagem abaixo:
+ ![](camadas.png)
+ ##### Outros tipos de rede no docker:
+ - Além do modelo padrão "brigde", o docker ainda disponibiliza os seguintes tipos:
+		 - *None network:* não haverá nenhuma rede;
+		 - *Host network:*, ao invés de utilizar a bridge (ponte) entre os containers e o host, o acesso é direto entre o container e o host;
+		 - *Overlay network:* usado com o docker swarm que é o orquestrador de containers <sub> *(lembrando que o kubernetes é o  orquestrador de containers padrão no mercado atual).*</sub>
