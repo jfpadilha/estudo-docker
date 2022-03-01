@@ -3,7 +3,7 @@ ESTUDO DOCKER
 
 Estudo em formato prático e objetivo, onde aprendo e demonstro como trabalhar com containers Docker e publicando suas aplicações com eficiência, juntamente com uma notação que poderá servir de manual rápido para o dia a dia.
 
-![](img-docker.png)
+![](img/img-docker.png)
 
 ********
 ********
@@ -402,12 +402,115 @@ EXPOSE 8080
  ```shell
  	$ ip addr
  ``` 
- ![](rede_docker.png)
+ ![](img/rede_docker.png)
  
  - Após rodar o comado veremos as informações referente as placas de rede do seu computador, juntamente com  a rede ***"docker0:"*** esta é a bridge do docker, no qual faz a ponte entre as camadas: containers, Bridge, host e a internet, conforme imagem abaixo:
- ![](camadas.png)
+ ![](img/camadas.png)
  ##### Outros tipos de rede no docker:
  - Além do modelo padrão "brigde", o docker ainda disponibiliza os seguintes tipos:
 		 - *None network:* não haverá nenhuma rede;
 		 - *Host network:*, ao invés de utilizar a bridge (ponte) entre os containers e o host, o acesso é direto entre o container e o host;
 		 - *Overlay network:* usado com o docker swarm que é o orquestrador de containers <sub> *(lembrando que o kubernetes é o  orquestrador de containers padrão no mercado atual).*</sub>
+
+#### Criando uma rede para comunicação:
+- Listando as redes no docker
+```shell
+	$ docker network ls
+```
+- criando um container com linux alpine sem designar ip
+```shell
+# executar container e após execução remover (--rm) / linux alpine / executar o shell (sh) / rodar o comando (-c) ifconfig
+	$ docker run --rm alpine:3.15.0 sh -c "ifconfig"
+
+# vai rodar o linux, executar o comando, mostrar as informações da rede e por sua vez irá encerrar a aplicação
+```
+- executando um container com linux alpine mas agora especificando qual ip da rede
+```shell
+# executar sem rede (--net none)
+	$ docker run --net none --rm alpine:3.15.0 sh -c "ifconfig"
+
+# somente vai mostrar a rede interna, vai ficar sem rede, sem comunicação com o host
+```
+- acessando rede do host estando no container
+```shell
+# executar um container e rodar nele (ifconfig), irá mostrar as configuraçoes de rede do host, o mesmo que "ifconfig" ou "ip address"
+	$ docker run --net host --rm alpine:3.15.0 sh -c "ifconfig"
+```
+- Inspecionando uma rede
+```shell
+# inspecionar a bridge:
+	$ docker inspect network bridge
+
+# para visualizar as redes que podem ser inspecionadas, deve-se listá-las para visualizar
+# observar os itens> "subnet" e o "gateway"
+```
+- E se tiverem vários containers, eles se comunicam?
+```shell
+# testando: executar 3 containers, linux alpine, executando em background (-d) e deixá-lo executando por 5 mil segundos
+	$ docker run --name "container_1_bridge" -d alpine:3.15.0 sleep 5000
+	
+	$ docker run --name "container_2_bridge" -d alpine:3.15.0 sleep 5000
+	
+	$ docker run --name "container_3_bridge" -d alpine:3.15.0 sleep 5000
+```
+- Após os 3 containers rodando, vamos acessá-los e testar alguns comandos
+```shell
+# acessando (executando) o container 1 e visualizar sua rede
+	$ docker exec -it "container_1_bridge" ifconfig
+	
+# agora vamos acesar o container 2 em forma interativa (-it)
+	$ docker exec -it container_2_bridge sh
+
+# agora estamos em modo de comando, vamos executar ping para container 1
+	 $ ping 172.17.0.2
+# nota-se que está realmente comunicando
+
+# agora executando ping para fora "google.com"
+	 $ ping google.com
+# também terá acesso, já que a bridge está gerenciando e possibilitando o acesso para fora
+# repetindo os testes de todos para todos os containers, todos estão comunicando
+```
+
+- Lembrando que já se pode executar o container que está rodando em segundo plano e ao mesmo tempo rodar comando ping
+```shell
+$ docker exec -it container_2_bridge ping 172.17.0.2
+```
+
+- Criando  novas faixas de ips
+```shell
+# informar o driver (bridge)
+	$ docker network create --driver bridge "nome_da_faixa"
+
+# vamos visualizar a lista das redes
+	$ docker network ls
+	
+# vamos inspecionar a nova faixa
+	$ docker inspect nome_da_faixa
+```
+- Testando a comunicação nessa entre as faixas
+```shell
+# primeiramente precisa-se cirar um container nela
+# rodar em background (-d) e ficar executando por 5000 segundos
+	$ docker run --name "container_10_bridge_nome_da_faixa" -d --net nome_da_faixa alpine:3.15.0 sleep 5000
+	
+# vamos acessar esse container e executar ping para um container de outra faixa, exe: 172.17.0.2
+	$ docker exec -it conta container_10_bridge_nome_da_faixa ping 172.17.0.2
+# notamos que não vai ser possível acessar, já que ele está em outra faixa, mas ambos estão com acesso ao host
+```
+- E se quiser liberar acesso entre os containers que estão em faixas diferentes?
+```shell
+	$ docker network connect nome_da_faixa nome_do_container_a_conectar
+# então cria-se uma ponte entre a faixa e o container
+
+# agora vamos testar a comunicação entre os containers que estão em faixa diferente
+# acessando (exec) container a primeira faixa e pingar ele no container da segunda faixa
+	$ docker exec -it nome_do_container_a_conectar ping ip_do_container_de_outra_faixa
+	
+# checando as interfaces
+	$ docker exec -it nome_do_container_faixa_diferente ifconfig
+# nota-se que agora ele possui 2 faixas de ip no mesmo container
+```
+- E se quiser desconectar os containers que estão em faixas diferentes e comunicando?
+```shell
+	$ docker network disconnect bridge nome_do_container
+```
