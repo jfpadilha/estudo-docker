@@ -514,3 +514,43 @@ $ docker exec -it container_2_bridge ping 172.17.0.2
 ```shell
 	$ docker network disconnect bridge nome_do_container
 ```
+
+#### Criando imagem e container de um projeto com banco de dados postgres
+- Após o projeto estar devidamente em seu local de edição de projeto;
+- Estar com o arquivo "dockerfile" criado, (no nosso caso ele é chamado de "pgfusion_postgres.dockerfile");
+- Vamos rodar o comando "docker build..." para criar a imagem
+```shell
+	$ docker build -f pgfusion_postgres.dockerfile -t jfpadilha/pgfusion_postgres:V1 .
+	
+	# docker build -f nome_do_arquivo_dockerfile -t nome_do_user_no_dockerhub/nome_do_projeto:tag_versao local_do_projeto ( . nesse caso no mesmo dir) 
+```
+- Checando se a imagem aparece na lista
+```shell
+	$ docker imagem ls
+```
+
+- Agora criando a imagem do projeto web
+```shell
+	$ docker build -f fusion_postgres.dockerfile -t jfpadilha/fusion_postgres.dockerfile:V1 .
+```
+- Nota-se que gerou erros, devido ao banco de dados ainda não estar rodando, ele tenta conectar ao banco, mas ele não existe.
+- O que fazer? criar um container com o banco de dados que a aplicação precisa
+```shell
+	# criando a imagem do banco de dados
+	$ docker run --name "pgfusion_postgres" -d jfpadilha/pg_gusion_postgres:V1 .
+```
+- Agora que o container está executando, podemos visualizar em:
+```shell
+	$ docker ps
+	# container em execução
+```
+- Notamos que no comando "run" não foi informado qual porta será mapeada, ou seja, localmente não será acessado do host.
+- Consultando o ip do container
+```shell
+
+# executar de modo iterativo (-it) e rodar o comando "ifconfig"
+	$ docker exec -it pgfusion_postgres ifconfig
+```
+
+```shell
+```
