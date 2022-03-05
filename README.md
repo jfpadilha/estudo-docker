@@ -396,7 +396,7 @@ EXPOSE 8080
 	$ docker run --name "fusion" -d -p 8080:8000 seu_username/fusion:v1
 ```
 
-#### Como funciona a comunicação em uma rede no Docker
+#### Redes no docker >> Como funciona a comunicação em uma rede no Docker
 - Quando trabalhamos com Docker este cria uma rede interna, em outra classe, e distribui IPs aos containers criados.
 - Visualizar as redes no terminal linux:
  ```shell
@@ -412,7 +412,7 @@ EXPOSE 8080
 		 - *Host network:*, ao invés de utilizar a bridge (ponte) entre os containers e o host, o acesso é direto entre o container e o host;
 		 - *Overlay network:* usado com o docker swarm que é o orquestrador de containers <sub> *(lembrando que o kubernetes é o  orquestrador de containers padrão no mercado atual).*</sub>
 
-#### Criando uma rede para comunicação:
+#### Redes no docker >> Criando uma rede para comunicação:
 - Listando as redes no docker
 ```shell
 	$ docker network ls
@@ -515,7 +515,7 @@ $ docker exec -it container_2_bridge ping 172.17.0.2
 	$ docker network disconnect bridge nome_do_container
 ```
 
-#### Criando imagem e container de um projeto com banco de dados postgres
+#### Redes no docker >> Criando imagem e container de um projeto com banco de dados postgres
 - Após o projeto estar devidamente em seu local de edição de projeto;
 - Estar com o arquivo "dockerfile" criado, (no nosso caso ele é chamado de "pgfusion_postgres.dockerfile");
 - Vamos rodar o comando "docker build..." para criar a imagem
@@ -551,6 +551,14 @@ $ docker exec -it container_2_bridge ping 172.17.0.2
 # executar de modo iterativo (-it) e rodar o comando "ifconfig"
 	$ docker exec -it pgfusion_postgres ifconfig
 ```
+
+#### Docker compose
+###### O que é o docker compose?
+- Nada mais é do que um arquivo YAML que concentra todos os comandos e configurações para que os containers sejam criados.
+- Ao invés de ficarmos digitando os comandos manualmente no terminal, criamos os dockerfiles, criamos o docker compose descrevendo tudo que precisamos para ter os containers e executamos o docker compose que irá ler o arquivo e fazer todo o trabalho braçal.
+- Nas versões anteriores do docker, o docker compose fazia parte da instalação padrão, mas atualmente é uma aplicação independente
+#### Docker compose >> Instalando docker compose
+- Basta acessar https://docs.docker.com/compose/install/ escolher seu sistema operacional e seguir o passo a passo
 
 ```shell
 ```
