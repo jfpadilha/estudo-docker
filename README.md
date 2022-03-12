@@ -560,5 +560,27 @@ $ docker exec -it container_2_bridge ping 172.17.0.2
 #### Docker compose >> Instalando docker compose
 - Basta acessar https://docs.docker.com/compose/install/ escolher seu sistema operacional e seguir o passo a passo
 
+-------------
+### Comandos básicos Docker-compose
+Após criar o arquivo "docker-compose.yml", vamos criar todos os containers:
 ```shell
+	$ docker-compose up -d
+```
+Parando todos os containers:  
+```shell
+	$ docker-compose stop
+```
+
+Removendo todos os containers:  
+```shell
+	$ docker-compose rm -f
+```
+
+Vendo o log de todos os containers:  
+```shell
+	$ docker-compose logs -f
+```
+Construir os containers sem inicializá-los:  
+```shell
+	$ docker-compose build
 ```
