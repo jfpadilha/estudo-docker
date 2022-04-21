@@ -584,3 +584,6 @@ Construir os containers sem inicializá-los:
 ```shell
 	$ docker-compose build
 ```
+
+Configuração de pós-instalação:
+https://docs.docker.com/engine/install/linux-postinstall/
