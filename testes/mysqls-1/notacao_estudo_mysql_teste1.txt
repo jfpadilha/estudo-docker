@@ -49,5 +49,12 @@
 	* -it -> executar usando o tty ou terminal
 
 8 - Persistindo dados (SUBSTITUI ITEM 4 / criando volumes ao executar o container:
-	$ docker run -d -v "pasta_localhost:pasta_local_no_container" --name "nome_do_container" "nome_da_imagem"
-	$ docker run -d -v $(pwd)/data:/var/lib/mysql --name db_mysql-cont db_mysql-img:jfpadilha
+	$ docker run -d -v "pasta_localhost:pasta_local_no_container" --rm 	--name "nome_do_container" "nome_da_imagem"
+	$ docker run -d -v $(pwd)/data:/var/lib/mysql --rm --name db_mysql-cont db_mysql-img:jfpadilha
+
+	EXTRA:
+	- comando com uso de portas, simulando que fossem usadas ao executar container
+	$ docke run -d -v $(pwd)/pastaLocal:/pastaNoContainer -p portaLocal:portaCont --rm --name container imagem:tag
+
+	$ docke run -d -v $(pwd)/data:/var/lib/mysql -p 9001:9001 --rm --name db_mysql_cont db_mysql-img:jfpadilha
+
