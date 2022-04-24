@@ -1,0 +1,53 @@
+=== Processo criando container
+
+1 - gerar um arquivo tipo ".Dockerfile", ex MYSQL
+
+	mysql.Dockerfile
+	"
+		FROM mysql:8.0.28 (versao da imagem, obtido no dockerhub)
+		ENV MYSQL_ROOT_PASSWORD 1234@ #senha do root	(enviroment: obtidos no dockerhub)
+		ENV MYSQL_DATABASE: db_t1
+		ENV MYSQL_USER: user  # criar outro usuario 
+		LABEL maintainer="Teste criando container mysql"
+
+	"
+
+2 - executar a geração da imagem, chamada 'build':
+	$ docker build -t nome_da_imagem:tag -f /pasta/arquivo.Dockerfile .
+	$ docker build -t db_mysql-img:jfpadilha -f /pasta/mysql.Dockerfile .
+
+	* -t -> tag, é o nome da imagem
+	* -f -> flag, especifica qual é o arquivo dockerfile
+	* . -> ponto, como se a imagem tivesse sendo construída na pasta atual
+
+3 - Visualizar as imagens criadas na máquina
+	$ docker image ls
+
+
+4 - Executar o container que vai utilizar a imagem criada acima:
+	$ docker run -d --rm --name "nome_do_container" "nome_da_imagem:tag"
+	$ docker run -d --rm --name db_mysql-cont bd_mysql-img:jfpadilha
+
+	* -d -> que será executada em beckground, sem deixar o terminal preso
+	* --rm -> se o conteiner já existir, ele vai excluir e gerar um novo
+	* --name -> é o nome do container
+
+5 - Criado um scrip sql com alguns comandos (criar bd, criar tabelas e inserts)
+
+6 - Executar comandos em um container que já está rodando (docker exec)
+	$ docker exec -i "nome_do_container" mysql "restante_do_comando_mysql"
+	$ docker exec -i db_mysql-cont mysql -u root -p 1234 < scripts.sql
+
+	* -i -> executando um comando de modo interativo, ou seja, para ler todo um script o processo não vai ser finalizado até que seja tudo concluído
+	* mysql-cont-teste1 -> nome do container criado acima e que está em execução
+	* -u "usuario_mysql" -p "senha_user_mysql" < "script.sql" -> este é o comando a ser executado
+
+7 - executando container interativo com terminal:
+	$ docker exec -it "nome_do_container" "comando_que_quero_executar"
+	$ docker exec -it db_mysql-container /bin/bash
+
+	* -it -> executar usando o tty ou terminal
+
+8 - Persistindo dados (SUBSTITUI ITEM 4 / criando volumes ao executar o container:
+	$ docker run -d -v "pasta_localhost:pasta_local_no_container" --name "nome_do_container" "nome_da_imagem"
+	$ docker run -d -v $(pwd)/data:/var/lib/mysql --name db_mysql-cont db_mysql-img:jfpadilha
