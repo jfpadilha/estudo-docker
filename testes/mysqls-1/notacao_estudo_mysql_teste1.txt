@@ -52,9 +52,20 @@
 	$ docker run -d -v "pasta_localhost:pasta_local_no_container" --rm 	--name "nome_do_container" "nome_da_imagem"
 	$ docker run -d -v $(pwd)/data:/var/lib/mysql --rm --name db_mysql-cont db_mysql-img:jfpadilha
 
-	EXTRA:
-	- comando com uso de portas, simulando que fossem usadas ao executar container
-	$ docke run -d -v $(pwd)/pastaLocal:/pastaNoContainer -p portaLocal:portaCont --rm --name container imagem:tag
+	* EXTRA 1:
 
-	$ docke run -d -v $(pwd)/data:/var/lib/mysql -p 9001:9001 --rm --name db_mysql_cont db_mysql-img:jfpadilha
+		- comando com uso de portas, simulando que fossem usadas ao executar container
+		$ docker run -d -v $(pwd)/pastaLocal:/pastaNoContainer -p portaLocal:portaCont --rm --name container imagem:tag
 
+		$ docker run -d -v $(pwd)/data:/var/lib/mysql -p 9001:9001 --rm --name db_mysql_cont db_mysql-img:jfpadilha
+
+	* EXTRA 2:
+		- quando for apontar alguma aplicação do host para o container, é necessário informar o ip do container
+		- podemos substituir o ip do container por um "apelido" criado com a flag "--link"
+
+		$ docker run -d -v /localhost:/container -p "portaLocal:portaContainer" --link "apelido_container" --rm --name "nomeContainer" "nomeImagem"
+
+		$ docker run -d -v $(pwd)/api:/home/node -p 9001:9001 --link mysql-container --rm --name node-container node-img
+
+			- no exemplo acima, estou informando ao docker que o container "node-container" tem um link com o container "mysql-container"
+			- na aplicação vou substituir o ip do container (172.17.0.2) por "mysql-container"
