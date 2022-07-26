@@ -1,0 +1,22 @@
+
+================= | anotações de comandos | ===============
+
+listar container
+    $ docker container ls           # lista containers executando    
+    $ docker container ls -a        # lista todos os container encerrados e executando
+    $ docker container ls -a -q     # lista os IDs dos containers
+    $ docker container inspect -f "{{json .State}}" containerName |jq .
+
+stop and start
+    $ docker stop container_name
+    $ docker start container_name
+
+run a container
+    $ docker run -it --name container_name image:tag    # it >> run in format iteractive tty
+    $ docker run -d --name container_name image:tag     # -d >> run in background
+
+executing a command in a container
+    $ docker container exec -i -t container_name /bin/sh    # execute iteractive and tty
+    $ docker container exec container_name ps               # execute the command directly on the container
+
+
