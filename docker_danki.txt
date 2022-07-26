@@ -19,4 +19,26 @@ executing a command in a container
     $ docker container exec -i -t container_name /bin/sh    # execute iteractive and tty
     $ docker container exec container_name ps               # execute the command directly on the container
 
+listening to a container
+    $ docker container attach container_name        # will show what is being processed in the moment
+
+logs
+    $ docker container logs container_name
+    $ docker container logs --tail 5                    # show last 5 logs
+    $ docker container logs --tail 5 --follow trivia    # 
+
+understanding dockerfile
+
+FROM image_name
+RUN mkdir -p /app                       # command executable linux, create folder or other command
+WORKDIR /app                            # diretory of work, onde sera executado os comandos
+COPY .requirements.txt /app/            # add algum conteudo de base
+RUN pip install -r requirements.txt     # 
+CMD ["python", "main.py"]               # processo de inicialização
+ENTRYPOINT                              # parecido com CMD para inicialização
+
+# pode-se usar o "entrypoint" com cmd, exemplo:
+ENTRYPOINT ["ping"]         # expressão, comando principal
+CMD ["-c", "3","8.8.8.8"]   # este é o comando,executar 3X ping para 8.8.8.8
+
 
